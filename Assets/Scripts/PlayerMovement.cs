@@ -14,14 +14,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !isMoving)
         {
-            Debug.Log("InputGot");
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
             {
-                Debug.Log("Raycast worked");
                 TileInfo tileInfo = hit.transform.GetComponent<TileInfo>();
                 if (tileInfo != null)
                 {
-                    Debug.Log("TileInfo is not null");
                     List<Vector2Int> path = AStarPathfinding.FindPath(new Vector2Int((int)transform.position.x, (int)transform.position.z), tileInfo.gridPosition, obstacleData);
                     if (path != null)
                     {
