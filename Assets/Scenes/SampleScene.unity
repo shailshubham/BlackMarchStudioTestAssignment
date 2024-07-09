@@ -326,6 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   obstacleData: {fileID: 11400000, guid: a31b03772fdb2504385466d6061766b9, type: 2}
+  enemy: {fileID: 545181048}
 --- !u!1 &545181043
 GameObject:
   m_ObjectHideFlags: 0

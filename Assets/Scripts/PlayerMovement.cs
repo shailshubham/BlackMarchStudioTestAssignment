@@ -6,11 +6,12 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 2f;
     public ObstacleData obstacleData;
+    public Transform enemy; // Reference to the enemy
 
     private Vector3 targetPosition;
     private bool isMoving = false;
 
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetMouseButtonDown(0) && !isMoving)
         {
@@ -19,7 +20,8 @@ public class PlayerMovement : MonoBehaviour
                 TileInfo tileInfo = hit.transform.GetComponent<TileInfo>();
                 if (tileInfo != null)
                 {
-                    List<Vector2Int> path = AStarPathfinding.FindPath(new Vector2Int((int)transform.position.x, (int)transform.position.z), tileInfo.gridPosition, obstacleData);
+                    Vector2Int enemyPos = new Vector2Int((int)enemy.position.x, (int)enemy.position.z);
+                    List<Vector2Int> path = AStarPathfinding.FindPath(new Vector2Int((int)transform.position.x, (int)transform.position.z), tileInfo.gridPosition, obstacleData, enemyPos);
                     if (path != null)
                     {
                         StartCoroutine(MoveAlongPath(path));
@@ -35,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
         foreach (Vector2Int position in path)
         {
-            targetPosition = new Vector3(position.x, 1f, position.y);
+            Vector3 targetPosition = new Vector3(position.x, 1, position.y);
             while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);

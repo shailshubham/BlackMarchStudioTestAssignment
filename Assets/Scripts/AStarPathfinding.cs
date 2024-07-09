@@ -21,7 +21,7 @@ public static class AStarPathfinding
         return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
     }
 
-    public static List<Vector2Int> FindPath(Vector2Int start, Vector2Int goal, ObstacleData obstacleData)
+    public static List<Vector2Int> FindPath(Vector2Int start, Vector2Int goal, ObstacleData obstacleData, Vector2Int? avoidPosition = null)
     {
         List<Vector2Int> openSet = new List<Vector2Int> { start };
         Dictionary<Vector2Int, Vector2Int> cameFrom = new Dictionary<Vector2Int, Vector2Int>();
@@ -60,6 +60,11 @@ public static class AStarPathfinding
             foreach (Vector2Int neighbor in GetNeighbors(current))
             {
                 if (neighbor.x < 0 || neighbor.x >= 10 || neighbor.y < 0 || neighbor.y >= 10 || obstacleData.GetObstacle(neighbor.x, neighbor.y))
+                {
+                    continue;
+                }
+
+                if (avoidPosition.HasValue && neighbor == avoidPosition.Value && neighbor != goal)
                 {
                     continue;
                 }

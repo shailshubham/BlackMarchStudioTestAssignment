@@ -18,7 +18,8 @@ public class ObstacleManager : MonoBehaviour
             {
                 if (obstacleData.GetObstacle(x, y))
                 {
-                    Instantiate(obstaclePrefab, new Vector3(x, 0.5f, y), Quaternion.identity);
+                    GameObject obj = Instantiate(obstaclePrefab, new Vector3(x, 0.5f, y), Quaternion.identity);
+                    obj.transform.SetParent(transform);
                 }
             }
         }
