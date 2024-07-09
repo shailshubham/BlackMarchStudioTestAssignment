@@ -34,9 +34,9 @@ public class EnemyAI : MonoBehaviour, IAI
     {
         isMoving = true;
 
-        for(int i = 0; i < path.Count-2; i++)
+        for(int i = 0; i < path.Count-1; i++)
         {
-            Vector3 targetPosition = new Vector3(path[i].x, 1.5f, path[i].y);
+            Vector3 targetPosition = new Vector3(path[i].x, 1f, path[i].y);
             while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);

@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
         foreach (Vector2Int position in path)
         {
-            targetPosition = new Vector3(position.x, 1.5f, position.y);
+            targetPosition = new Vector3(position.x, 1f, position.y);
             while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);

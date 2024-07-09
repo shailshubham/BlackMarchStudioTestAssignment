@@ -17,6 +17,7 @@ public class GridGenerator : MonoBehaviour
             for (int y = 0; y < gridSize; y++)
             {
                 GameObject tile = Instantiate(tilePrefab, new Vector3(x, 0, y), Quaternion.identity);
+                tile.transform.SetParent(transform);
                 tile.name = $"Tile_{x}_{y}";
                 TileInfo tileInfo = tile.GetComponent<TileInfo>();
                 tileInfo.gridPosition = new Vector2Int(x, y);
