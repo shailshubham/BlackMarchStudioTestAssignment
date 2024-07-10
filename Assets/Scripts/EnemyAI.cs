@@ -12,11 +12,12 @@ public class EnemyAI : MonoBehaviour, IAI
 
     void Update()
     {
-        if (!isMoving)
+        if (!isMoving && Vector3.Distance(player.transform.position, transform.position) > 1.5f)
         {
             Move();
         }
     }
+
 
     public void Move()
     {
